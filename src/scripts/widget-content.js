@@ -26,7 +26,7 @@
 
 angular.module('adf')
   .directive('adfWidgetContent', function($log, $q, $sce, $http, $templateCache,
-    $compile, $controller, $injector, dashboard) {
+    $compile, $controller, $injector, dashboard, $rootScope) {
 
     function parseUrl(url){
       var parsedUrl = url;
@@ -153,6 +153,12 @@ angular.module('adf')
         $scope.$on('widgetReload', function(){
           currentScope = compileWidget($scope, $element, currentScope);
         });
+        if($scope.content.reload && $scope.content.reload == true) 
+        {
+          $rootScope.$on('globalWidgetReload', function(){
+            currentScope = compileWidget($scope, $element, currentScope);
+          });
+        }
       }
     };
 
