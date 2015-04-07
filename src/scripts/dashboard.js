@@ -195,6 +195,10 @@ angular.module('adf')
           $scope.editMode = false;
 		      $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
         };
+        
+        $scope.deleteBoard = function(){
+          $rootScope.$broadcast('adfDashboardRequestedForDelete', name);
+        };
 
         // edit dashboard settings
         $scope.editDashboardDialog = function(){
